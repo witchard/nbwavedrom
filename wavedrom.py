@@ -31,4 +31,4 @@ def draw_wavedrom(data, width=None):
     IPython.core.display.display_html(IPython.core.display.HTML(htmldata))
     jsdata = 'WaveDrom.ProcessAll();'
     IPython.core.display.display_javascript(IPython.core.display.Javascript(
-        data=jsdata, lib=['files/js/WaveDrom.js', 'files/js/WaveDromSkin.js']))
+        data=jsdata, lib=['files/js/wavedrom.min.js', 'files/js/wavedromskin.js']))
