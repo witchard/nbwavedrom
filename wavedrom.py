@@ -2,13 +2,15 @@ import IPython.core.display
 import json
 
 
-def draw_wavedrom(data):
+def draw_wavedrom(data, width=None):
     """
     A function to provide digital waveform drawing in ipython notebook.
     It utilises the wavedrom java script library, documentation for which can
     be found here: https://code.google.com/p/wavedrom/.
     Please place WaveDrom.js and WaveDromSkin.js in your notebook folder under
     the subdirectory js.
+
+    Note the optional argument width forces the width in pixels
 
     Example usage:
         import wavedrom
@@ -22,7 +24,10 @@ def draw_wavedrom(data):
         ]}
         wavedrom.draw_wavedrom(a)
     """
-    htmldata = '<script type="WaveDrom">' + json.dumps(data) + '</script>'
+    style = ""
+    if width != None:
+	style = ' style="width: ' + str(int(width)) + 'px"'
+    htmldata = '<div' + style + '><script type="WaveDrom">' + json.dumps(data) + '</script></div>'
     IPython.core.display.display_html(IPython.core.display.HTML(htmldata))
     jsdata = 'WaveDrom.ProcessAll();'
     IPython.core.display.display_javascript(IPython.core.display.Javascript(
