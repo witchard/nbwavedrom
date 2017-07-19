@@ -26,7 +26,7 @@ def draw_wavedrom(data, width=None):
     """
     style = ""
     if width != None:
-	style = ' style="width: ' + str(int(width)) + 'px"'
+        style = ' style="width: ' + str(int(width)) + 'px"'
     htmldata = '<div' + style + '><script type="WaveDrom">' + json.dumps(data) + '</script></div>'
     IPython.core.display.display_html(IPython.core.display.HTML(htmldata))
     jsdata = 'WaveDrom.ProcessAll();'
