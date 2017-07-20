@@ -13,3 +13,8 @@ browser based render will be used, this means that the notebook can't be convert
 PDF or displayed on github.
 
 Phantomjs can be installed from here: http://phantomjs.org/download.html.
+
+Wavedrom source code can be found here:
+
+* https://github.com/wavedrom/wavedrom.github.io
+* https://github.com/wavedrom/cli/
