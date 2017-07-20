@@ -1,21 +1,25 @@
-import IPython.core.display
-import IPython.display
+""" nbwavedrom - wavedrom timing diagrams for jupyter notebook """
 import json
 import os
 import subprocess
+import IPython.display
+
+def _get_js_path(jsfile):
+    base = os.path.dirname(os.path.realpath(__file__))
+    return os.path.join(base, 'js', jsfile)
 
 def _draw_wavedrom_javascript(data, width):
     style = ""
     if width != None:
-        style = ' style="width: ' + str(int(width)) + 'px"'
-    htmldata = '<div' + style + '><script type="WaveDrom">' + json.dumps(data) + '</script></div>'
-    IPython.core.display.display_html(IPython.core.display.HTML(htmldata))
-    jsdata = 'WaveDrom.ProcessAll();'
-    IPython.core.display.display_javascript(IPython.core.display.Javascript(
-        data=jsdata, lib=['files/js/wavedrom.min.js', 'files/js/wavedromskin.js']))
+        style = ' style="width: ' + str(int(width)) + 'px'
+    htmldata = '<script>' + open(_get_js_path('wavedromskin.js')).read() + '</script>'
+    htmldata += '<script>' + open(_get_js_path('wavedrom.min.js')).read() + '</script>'
+    htmldata += '<div' + style + '><script type="WaveDrom">' + json.dumps(data) + '</script></div>'
+    htmldata += '<script>WaveDrom.ProcessAll();</script>'
+    return IPython.display.HTML(data=htmldata)
 
 def _draw_wavedrom_phantomjs(data, phantomjs):
-    prog = subprocess.Popen([phantomjs, 'js/wavedrom-cli.js', '-i', '-', '-s', '-'],
+    prog = subprocess.Popen([phantomjs, _get_js_path('wavedrom-cli.js'), '-i', '-', '-s', '-'],
                             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, _ = prog.communicate(json.dumps(data).encode('utf-8'))
     return IPython.display.SVG(stdout)
@@ -71,6 +75,6 @@ def draw_wavedrom(data, width=None, phantomjs=None):
         else:
             phantomjs = _find_phantomjs(phantomjs) # Search it with user path
     if phantomjs is False:
-        _draw_wavedrom_javascript(data, width)
+        return _draw_wavedrom_javascript(data, width)
     else:
         return _draw_wavedrom_phantomjs(data, phantomjs)

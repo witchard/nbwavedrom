@@ -1,7 +1,7 @@
-ipython-wavedrom
-================
+nbwavedrom
+==========
 
-A simple function to add wavedrom diagrams into an ipython notebook.
+A simple package to add wavedrom (http://wavedrom.com) timing diagrams into a jupyter notebook.
 
 To get started simply clone this repository, cd to the folder and run ```jupyter notebook```.
 Then take a look at the example notebook.
