@@ -40,14 +40,14 @@ def _find_phantomjs(program='phantomjs'):
                 return exe_file
     return False
 
-def draw_wavedrom(data, width=None, phantomjs=None):
+def draw(data, width=None, phantomjs=None):
     """
     A function to provide digital waveform drawing in ipython notebook.
     It utilises the wavedrom java script library, documentation for which can
     be found here: wavedrom.com.
 
     Example usage:
-        import wavedrom
+        import nbwavedrom
         a = {
         'signal': [
           {'name': 'clk', 'wave': 'p.....|...'},
@@ -56,7 +56,7 @@ def draw_wavedrom(data, width=None, phantomjs=None):
           {},
           {'name': 'ack', 'wave': '1.....|01.'}
         ]}
-        wavedrom.draw_wavedrom(a)
+        nbwavedrom.draw(a)
 
     Note, there are two wavedrom rendering engines built in. The default is to use the
     wavedrom-cli (https://github.com/wavedrom/cli). This requires phantomjs. This is the
@@ -67,7 +67,8 @@ def draw_wavedrom(data, width=None, phantomjs=None):
     The following arguments are used:
     * data - the wavedrom configuration (see wavedrom.com)
     * width - forces max width of the output when using browser rendering
-    * phantomjs - set to the path to phantomjs if it is not in your PATH
+    * phantomjs - set to the path to phantomjs if it is not in your PATH. Set to False to
+      force browser rendering
     """
     if phantomjs != False:
         if phantomjs is None or phantomjs is True:
