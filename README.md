@@ -5,8 +5,8 @@ A simple package to add wavedrom (http://wavedrom.com) timing diagrams into a ju
 
 Example: https://github.com/witchard/nbwavedrom/blob/master/examples/example.ipynb
 
-To get started simply `pip install git+git://github.com/witchard/nbwavedrom.git`.
-Then take a look at the example notebook within jupyter notebook.
+To get started simply `pip install nbwavedrom` or `pip install git+git://github.com/witchard/nbwavedrom.git`
+for the development version. Then take a look at the example notebook within jupyter notebook.
 
 Note, there are two wavedrom rendering engines built in. The default is to use the
 wavedrom-cli (https://github.com/wavedrom/cli). This requires phantomjs. This is the
