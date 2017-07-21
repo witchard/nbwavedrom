@@ -4,7 +4,7 @@ setup(
     name='nbwavedrom',
     packages=['nbwavedrom'],
     package_data={'nbwavedrom': ['js/*.js']},
-    version='0.1.0',
+    version='0.2.0',
     description='Wavedrom timing diagrams for Jupyter Notebook',
     author='witchard',
     author_email='witchard@hotmail.co.uk',
