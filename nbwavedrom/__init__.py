@@ -14,14 +14,14 @@ def _draw_wavedrom_javascript(data, width):
         style = ' style="width: ' + str(int(width)) + 'px'
     htmldata = '<script>' + open(_get_js_path('wavedromskin.js')).read() + '</script>'
     htmldata += '<script>' + open(_get_js_path('wavedrom.min.js')).read() + '</script>'
-    htmldata += '<div' + style + '><script type="WaveDrom">' + json.dumps(data) + '</script></div>'
+    htmldata += '<div' + style + '><script type="WaveDrom">' + data + '</script></div>'
     htmldata += '<script>WaveDrom.ProcessAll();</script>'
     return IPython.display.HTML(data=htmldata)
 
 def _draw_wavedrom_phantomjs(data, phantomjs):
     prog = subprocess.Popen([phantomjs, _get_js_path('wavedrom-cli.js'), '-i', '-', '-s', '-'],
                             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout, _ = prog.communicate(json.dumps(data).encode('utf-8'))
+    stdout, _ = prog.communicate(data.encode('utf-8'))
     return IPython.display.SVG(stdout)
 
 def _is_exe(path):
@@ -39,6 +39,11 @@ def _find_phantomjs(program='phantomjs'):
             if _is_exe(exe_file):
                 return exe_file
     return False
+
+def _convert_data(data):
+    if not isinstance(data, str):
+        data = json.dumps(data)
+    return data
 
 def draw(data, width=None, phantomjs=None):
     """
@@ -70,6 +75,7 @@ def draw(data, width=None, phantomjs=None):
     * phantomjs - set to the path to phantomjs if it is not in your PATH. Set to False to
       force browser rendering
     """
+    data = _convert_data(data)
     if phantomjs != False:
         if phantomjs is None or phantomjs is True:
             phantomjs = _find_phantomjs() # Search it in path
