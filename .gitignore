@@ -3,3 +3,4 @@ __pycache__/
 .ipynb_checkpoints/
 dist/
 nbwavedrom.egg-info/
+venv/
