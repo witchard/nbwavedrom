@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "nbwavedrom"
+version = "1.0.1"
+description = "Wavedrom timing diagrams for Jupyter Notebook"
+authors = ["witchard <witchard@hotmail.co.uk>"]
+repository = "https://github.com/witchard/nbwavedrom"
+license = "MIT"
+readme = "README.md"
+keywords = ["wavedrom", "jupyter", "notebook"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Jupyter",
+    "Framework :: Jupyter :: JupyterLab",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3"
+]
+
+[tool.poetry.dependencies]
+python = "^3.5"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
