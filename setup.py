@@ -23,9 +23,9 @@ setup(
     ],
 )
 
-# DONT FORGET TO CHANGE DOWNLOAD_URL WHEN DOING A RELEASE!
-# Thanks to this guide: http://peterdowns.com/posts/first-time-with-pypi.html
 # Release with:
+#    Modify release URL above to new version
 #    git tag <version>
 #    git push --tags
-#    python setup.py sdist upload -r pypi
+#    python setup.py sdist
+#    twine upload dist/nbwavedrom-<version>.tar.gz
